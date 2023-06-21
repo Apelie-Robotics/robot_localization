@@ -43,7 +43,11 @@ int main(int argc, char ** argv)
   std::shared_ptr<robot_localization::RosEkf> filter =
     std::make_shared<robot_localization::RosEkf>(options);
   filter->initialize();
-  rclcpp::spin(filter->get_node_base_interface());
+  rclcpp::executors::StaticSingleThreadedExecutor exec;
+  exec.add_node(filter);
+  exec.spin();
+  exec.remove_node(filter);
+  filter.reset();
   rclcpp::shutdown();
   return 0;
 }
