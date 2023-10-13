@@ -388,12 +388,26 @@ void RosFilter<T>::forceTwoD(
   measurement(StateMemberVpitch) = 0.0;
   measurement(StateMemberAz) = 0.0;
 
+  measurement_covariance.row(StateMemberZ).setZero();
+  measurement_covariance.col(StateMemberZ).setZero();
   measurement_covariance(StateMemberZ, StateMemberZ) = 1e-6;
+  measurement_covariance.row(StateMemberRoll).setZero();
+  measurement_covariance.col(StateMemberRoll).setZero();
   measurement_covariance(StateMemberRoll, StateMemberRoll) = 1e-6;
+  measurement_covariance.row(StateMemberPitch).setZero();
+  measurement_covariance.col(StateMemberPitch).setZero();
   measurement_covariance(StateMemberPitch, StateMemberPitch) = 1e-6;
+  measurement_covariance.row(StateMemberVz).setZero();
+  measurement_covariance.col(StateMemberVz).setZero();
   measurement_covariance(StateMemberVz, StateMemberVz) = 1e-6;
+  measurement_covariance.row(StateMemberVroll).setZero();
+  measurement_covariance.col(StateMemberVroll).setZero();
   measurement_covariance(StateMemberVroll, StateMemberVroll) = 1e-6;
+  measurement_covariance.row(StateMemberVpitch).setZero();
+  measurement_covariance.col(StateMemberVpitch).setZero();
   measurement_covariance(StateMemberVpitch, StateMemberVpitch) = 1e-6;
+  measurement_covariance.row(StateMemberAz).setZero();
+  measurement_covariance.col(StateMemberAz).setZero();
   measurement_covariance(StateMemberAz, StateMemberAz) = 1e-6;
 
   update_vector[StateMemberZ] = 1;
